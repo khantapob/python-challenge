@@ -40,9 +40,9 @@ with open(budget_data, 'r') as csvfile:
     avg_count = float(len(countmonths)) - 1
     avg_change = sum(change_rev) / avg_count
 
-    #The greatest increase in profits (date and amount) over the entire period
+    #The greatest  increase in profits (date and amount) over the entire period
     max_amt = 0
-    for inc_mth, inc_amt in zip(datemonth, int(change_rev) ):
+    for inc_mth, inc_amt in zip(datemonth, change_rev):
         
         if inc_amt > max_amt:
             max_amt = inc_amt
