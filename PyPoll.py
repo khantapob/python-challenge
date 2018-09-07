@@ -33,10 +33,7 @@ with open(election_data, 'r') as csvfile:
 
         x = votes.count(name)
         votecount.append(x)
-
-    # cal percent
-    for percentvote in candidates:
-        percent = (float(votecount)/total_vote) * 100    
+        #print(votecount)
 
     #find the winner
     dvalue = 0
@@ -46,17 +43,23 @@ with open(election_data, 'r') as csvfile:
             winner = WinName
             dvalue = Winvote
 
-#def getPercentages(wrestlerData):
+     #find the winner and cal percent win
+    percent = 0.0
+    percent_result = []
+    for WinName1, Winvote1 in zip(candidates, votecount):
 
-   # Win percent can be found by dividing the the total wins by the total matches and multiplying by 100
-   #percent = (int(wrestlerData[1]) / totalMatches) * 100
+        percent = (Winvote1/total_vote) * 100
+        percent_result.append(percent)
+
+    #format to two decimal places
+    Fpercent_result = [ '%.3f' % elem for elem in percent_result ]
 def output():
     print(f'Election Results')
     print(f'-------------------------')
     print(f'Total Votes: {str(total_vote)}') 
     print(f'-------------------------')
     for name in range(len(candidates)):
-        print(f'{candidates[name]}: {votecount[name]} ')
+        print(f'{candidates[name]}: {Fpercent_result[name]}%  {votecount[name]} ')
     print(f'-------------------------')
     print(f'Winner: {winner}')
     print(f'-------------------------')
